@@ -13,7 +13,7 @@ api_key='' #create a project, enable Youtube data API v3 for it, and get API key
 published_before='2017-08-01T00:00:00Z' # retrieve videos published before this date only. RFC 3339 formatted date-time value (1970-01-01T00:00:00Z). Leave blank for last month
 published_after='2017-07-01T00:00:00Z'  # retrieve videos published after this date only. RFC 3339 formatted date-time value (1970-01-01T00:00:00Z). Leave blank for last month
 
-jours_back=-30 # select videos in the last x days. useless if published_after is set
+days_back=-30 # select videos published in the last x days. useless if published_after is set
 
 if published_before == '':
 	d = datetime.datetime.utcnow() # get time now in UTC
@@ -21,7 +21,7 @@ if published_before == '':
 
 if published_after == '':
 	d = datetime.datetime.utcnow() # get time now in UTC
-	d = d + datetime.timedelta(days=jours_back) # get time 30 days ago
+	d = d + datetime.timedelta(days=days_back) # get time 30 days ago
 	published_after = d.isoformat("T") + "Z" #transform time in RFC3339
 
 video_list=[] #list of videos with the requested criteria
